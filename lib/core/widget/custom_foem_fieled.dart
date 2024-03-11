@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uniwal_app/core/utils/styles.dart';
 
 class FormFieledComponent extends StatelessWidget {
   final TextEditingController? controller;
@@ -82,10 +83,10 @@ class FormFieledComponent extends StatelessWidget {
         contentPadding: const EdgeInsets.all(10),
         labelText: label,
         suffixIcon: suffix,
-        // labelStyle: Styles.style16.copyWith(
-        //   fontWeight: FontWeight.w400,
-        //   color: const Color(0xFFA0A7B0),
-        // ),
+        labelStyle: Styles.style14.copyWith(
+          fontWeight: FontWeight.w400,
+          color: const Color(0xFFAFAAC2),
+        ),
         hintStyle: const TextStyle(
           fontWeight: FontWeight.w400,
           fontSize: 16,

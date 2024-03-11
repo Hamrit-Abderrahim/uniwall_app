@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:uniwal_app/core/functions/navigatore.dart';
 import 'package:uniwal_app/core/widget/custom_foem_fieled.dart';
 import 'package:uniwal_app/features/savings/widgets/daialog.dart';
+import 'package:uniwal_app/features/savings/widgets/saving_goal.dart';
 
 class FormNewSaving extends StatefulWidget {
   const FormNewSaving({super.key});
@@ -122,57 +124,67 @@ class _FormNewSavingState extends State<FormNewSaving> {
             Column(
               children: [
                 for (var item in estateRooms)
-                  RadioListTile(
-                    dense: true,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
+                  SizedBox(
+                    height: 30,
+                    child: CheckboxListTile(
+                      dense: true,
+                      contentPadding: const EdgeInsets.all(0),
+                      activeColor: Color(0xFF1D4ED8),
+                      title: Text(item),
+                      value: indexOf == estateRooms.indexOf(item),
+                      onChanged: (value) {
+                        setState(() {
+                          isSelected[estateRooms.indexOf(item)] = value!;
+                          if (isSelected[estateRooms.indexOf(item)] == true) {
+                            indexOf = estateRooms.indexOf(item);
+                          }
+                          print('indexOf===$indexOf');
+                          print(
+                              'isSelected[estateRooms.indexOf(item)]===${isSelected[estateRooms.indexOf(item)]}');
+                        });
+                      },
+                      controlAffinity: ListTileControlAffinity.leading,
                     ),
-                    contentPadding: const EdgeInsets.all(0),
-                    activeColor: const Color(0xFF94A3B8),
-                    title: Text(item),
-                    value: estateRooms.indexOf(item),
-                    groupValue: indexOf,
-                    onChanged: (value) {
-                      setState(() {
-                        indexOf = value!;
-                        print(indexOf);
-                      });
-                    },
-                    controlAffinity: ListTileControlAffinity.leading,
                   ),
               ],
             ),
             Column(
               children: [
                 for (var item in estateRoomsRoundex)
-                  RadioListTile(
-                    dense: true,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
+                  SizedBox(
+                    height: 30,
+                    child: RadioListTile(
+                      dense: true,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      contentPadding: const EdgeInsets.only(left: 40),
+                      activeColor: Color(0xFF1D4ED8),
+                      title: Text(item),
+                      value: estateRoomsRoundex.indexOf(item),
+                      groupValue: indexOf != 2 ? null : indexOfRounded,
+                      onChanged: indexOf != 2
+                          ? null
+                          : (int? value) {
+                              setState(() {
+                                indexOfRounded = value!;
+                                if (indexOfRounded == 3) {
+                                  dialog(context);
+                                }
+                              });
+                            },
+                      controlAffinity: ListTileControlAffinity.leading,
                     ),
-                    contentPadding: const EdgeInsets.only(left: 40),
-                    activeColor: const Color(0xFF94A3B8),
-                    title: Text(item),
-                    value: estateRoomsRoundex.indexOf(item),
-                    groupValue: indexOf != 2 ? null : indexOfRounded,
-                    onChanged: indexOf != 2
-                        ? null
-                        : (int? value) {
-                            setState(() {
-                              indexOfRounded = value!;
-                              if (indexOfRounded == 3) {
-                                dialog(context);
-                              }
-                            });
-                          },
-                    controlAffinity: ListTileControlAffinity.leading,
                   ),
               ],
+            ),
+            SizedBox(
+              height: 25,
             ),
             GestureDetector(
               onTap: () {
                 // if (formKey.currentState!.validate()) {}
-                //  Navigate.navigateAndReplace(context, NewSaving());
+                Navigate.navigateAndReplace(context, YourSavingGoal());
               },
               child: Container(
                 height: 34,

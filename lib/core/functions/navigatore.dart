@@ -5,7 +5,7 @@ class Navigate {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => widget),
-      (route) => true,
+      (route) => false,
     );
   }
 

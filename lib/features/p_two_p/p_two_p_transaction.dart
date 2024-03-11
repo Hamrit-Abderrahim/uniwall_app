@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:uniwal_app/core/functions/navigatore.dart';
-import 'package:uniwal_app/core/functions/text_gradient.dart';
+import 'package:uniwal_app/core/widget/custom_app_bar.dart';
 import 'package:uniwal_app/core/widget/custom_button.dart';
 import 'package:uniwal_app/core/widget/custom_foem_fieled.dart';
 import 'package:uniwal_app/features/p_two_p/p_two_p_done.dart';
@@ -12,26 +11,9 @@ class PTwoPTransaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'P2P Transaction',
-          style: TextStyle(
-              fontSize: 33.0,
-              fontWeight: FontWeight.bold,
-              foreground: Paint()..shader = linearGradient),
-        ),
-        leading: GestureDetector(
-          child: Align(
-            child: SvgPicture.asset(
-              'assets/images/arrow_left.svg',
-              height: 20,
-              width: 10,
-            ),
-          ),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
+      appBar: const CustomAppBar(
+        statusBar: Brightness.dark,
+        title: 'P2P Transaction',
       ),
       body: Padding(
         padding:
